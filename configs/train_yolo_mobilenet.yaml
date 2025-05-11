@@ -1,0 +1,43 @@
+# Configuration for YOLO with MobileNetV2 backbone
+
+backbone:
+  type: mobilenetv2
+  args:
+    pretrained: true
+    trainable_layers: 3  # Number of layers to fine-tune
+
+detector:
+  type: yolo
+  args:
+    # Anchors for different scales (small, medium, large objects)
+    anchors:
+      - [[10, 13], [16, 30], [33, 23]]  # Small objects
+      - [[30, 61], [62, 45], [59, 119]]  # Medium objects
+      - [[116, 90], [156, 198], [373, 326]]  # Large objects
+    num_anchors: 3
+
+training:
+  batch_size: 16
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  momentum: 0.9
+  lr_scheduler:
+    type: reduce_on_plateau
+    patience: 5
+    factor: 0.1
+    min_lr: 0.00001
+  
+  # Data augmentation
+  augmentation:
+    horizontal_flip: true
+    random_crop: true
+    color_jitter: true
+    normalize: true
+
+# Evaluation settings
+evaluation:
+  batch_size: 16
+  iou_threshold: 0.5
+  score_threshold: 0.5
+  max_detections: 100

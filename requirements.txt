@@ -1,0 +1,19 @@
+# Core dependencies
+torch>=1.7.0
+torchvision>=0.8.0
+numpy>=1.19.0,<1.21.0  # Avoid newer versions with Python compatibility issues
+pillow>=8.0.0
+matplotlib>=3.3.0
+tqdm>=4.50.0
+pyyaml>=5.3.0
+
+# Dataset handling
+pycocotools>=2.0.2  # For COCO dataset
+opencv-python>=4.4.0  # OpenCV package (not cv2)
+albumentations>=0.5.2,<1.0.0  # Lower version for better compatibility
+kagglehub>=0.2.0  # For downloading datasets from Kaggle
+
+# Evaluation and visualization
+pandas>=1.1.0
+seaborn>=0.11.0
+scikit-learn>=0.24.0
